@@ -230,7 +230,9 @@ void PCLLocalization::initializePubSub()
     std::bind(&PCLLocalization::odomReceived, this, std::placeholders::_1));
 
   cloud_sub_ = create_subscription<sensor_msgs::msg::PointCloud2>(
-    "cloud", rclcpp::SensorDataQoS(),
+    // "cloud",
+    "cloud", rclcpp::SystemDefaultsQoS(),
+    // "cloud", rclcpp::SensorDataQoS(),
     std::bind(&PCLLocalization::cloudReceived, this, std::placeholders::_1));
 
   imu_sub_ = create_subscription<sensor_msgs::msg::Imu>(
